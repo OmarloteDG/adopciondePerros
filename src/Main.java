@@ -14,9 +14,7 @@ public class Main {
         String nombre, apellido, documento, raza, placa, tamano;
 
 
-
-
-        do{
+        do {
             System.out.println("MENU DE OPCIONES");
             System.out.println("1. Registrar Persona");
             System.out.println("2. Registrar Perro");
@@ -28,7 +26,7 @@ public class Main {
             System.out.print("Seleccione una opción: ");
             opcion = teclado.nextInt();
 
-            switch (opcion){
+            switch (opcion) {
                 case 1 -> {
                     System.out.println("Nombre:");
                     nombre = teclado.next();
@@ -38,10 +36,10 @@ public class Main {
                     edad = teclado.nextInt();
                     System.out.println("Documento:");
                     documento = teclado.next();
-                    personas.add( new Persona(nombre,apellido,edad,documento));
+                    personas.add(new Persona(nombre, apellido, edad, documento));
                     System.out.println("Persona Registrada Correctamente.");
                 }
-                case 2 ->{
+                case 2 -> {
                     System.out.println("Placa:");
                     placa = teclado.next();
                     System.out.println("Nombre:");
@@ -52,16 +50,83 @@ public class Main {
                     edad = teclado.nextInt();
                     System.out.println("Tamaño:");
                     tamano = teclado.next();
-
-                    perrosDisponibles.add(new Perro(placa,nombre,raza,edad,tamano));
+                    perrosDisponibles.add(new Perro(placa, nombre, raza, edad, tamano));
+                    System.out.println("Perro Registrado Correctamente.");
                 }
+                case 3 -> {
+                    if (personas.isEmpty()) {
+                        System.out.println("no hay personas registradas.");
+                    } else {
+                        personas.forEach(System.out::println);
+                    }
+                }
+                case 4 -> {
+                    if (perrosDisponibles.isEmpty()) {
+                        System.out.println("no hay perros disponibles.");
+                    } else {
+                        perrosDisponibles.forEach(System.out::println);
+                    }
+                }
+                case 5 -> {
+                    System.out.println("Documento:");
+                    documento = teclado.next();
+                    Persona adptante= null;
+                    for (Persona p :personas){
+                        if (p.getDocumento().equals(documento)){
+                            adptante = p;
 
+                        }
+                    }
+                    if (adptante == null){
+                        System.out.println("persona no encontrada");
+                    }
+                    System.out.println("placa:");
+                    documento = teclado.next();
+                    placa = teclado.next();
+                    Perro perroAsoptado = null;
+                    for (Perro p : perrosDisponibles){
+                        if (p.getPlaca().equals(placa)){
+                            perroAsoptado = p;
+                        }
+                    }
+                    if (perroAsoptado == null){
+                        System.out.println("perro no disponible o no existe");
+                    }else {
+                        if (adptante.adoptarPerro(perroAsoptado)){
+                            perrosDisponibles.remove(perroAsoptado);
+                            System.out.println("perro adoptado con exito");
+                        }else {
+                            System.out.println("ya adopto mas de 3 perros");
+                        }
+                    }
+                }
+                case 6 -> {
+                    System.out.println("Documento:");
+                    documento = teclado.next();
+                    Persona persona = null;
+                    for (Persona p: personas){
+                        if (p.getDocumento().equals(documento)){
+                            persona = p;
+                        }
+                    }
+                    if (persona == null){
+                        System.out.println("Pesona no encontrada.");
+                    }else{
+                        Perro viejo = persona.perrosMasGrande();
+                        if (viejo == null){
+                            System.out.println("no hay perros grande");
+                        }else {
+                            System.out.println("El perro mas Grande es:"+ viejo);
+                        }
+                    }
 
+                }
+                case 7 -> {
+                    System.out.println("GRACIAS POR USAR EL SISTEMAS.");
+                }
             }
-        }
-
-
-
-
+        }while (opcion !=7);
     }
 }
+
+

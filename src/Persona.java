@@ -13,9 +13,9 @@ public class Persona {
 
     public Persona(String nombre, String apellido, int edad, String documento) {
         this.nombre = nombre;
-        this.apellido = this.apellido;
-        this.edad = this.edad;
-        this.documento = this.documento;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.documento = documento;
         this.perrosAdoptados = new ArrayList<>();
     }
     public String getDocumento(){
