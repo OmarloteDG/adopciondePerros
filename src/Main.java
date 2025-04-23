@@ -81,7 +81,6 @@ public class Main {
                         System.out.println("persona no encontrada");
                     }
                     System.out.println("placa:");
-                    documento = teclado.next();
                     placa = teclado.next();
                     Perro perroAsoptado = null;
                     for (Perro p : perrosDisponibles){
